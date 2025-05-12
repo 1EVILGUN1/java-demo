@@ -1,0 +1,31 @@
+spring:
+  cache:
+    type: redis
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  datasource:
+    url: jdbc:postgresql://localhost:5432/test_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    jpa:
+      hibernate:
+        ddl-auto: validate # ????????? ???????????? ????????? ? ??
+      properties:
+        hibernate:
+          default_schema: public
+          jdbc:
+            lob:
+              non_contextual_creation: true
+    sql:
+      init:
+        mode: always # ????????? schema.sql ??? ??????
+    jwt:
+      secret: "your-256-bit-secret-your-256-bit-secret-your-256-bit-secret" # ??????? 256 ???
+    springdoc:
+      api-docs:
+        path: /api-docs
+      swagger-ui:
+        path: /swagger-ui.html
