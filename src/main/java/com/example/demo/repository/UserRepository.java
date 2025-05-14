@@ -20,5 +20,5 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
 
     Page<User> findByPhones_Phone(String phone, Pageable pageable);
 
-    Page<User> findByNameStartingWithAndDateOfBirthAfter(String name, String dateOfBirth, Pageable pageable);
+    Page<User> findByNameStartingWithAndDateOfBirth(String name, String dateOfBirth, Pageable pageable);
 }

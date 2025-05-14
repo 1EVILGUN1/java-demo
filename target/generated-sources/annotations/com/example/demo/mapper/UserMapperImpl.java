@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-05-12T17:23:23+0300",
+    date = "2025-05-14T17:20:32+0300",
     comments = "version: 1.6.0, compiler: javac, environment: Java 22.0.2 (Oracle Corporation)"
 )
 @Component
@@ -21,20 +21,16 @@ public class UserMapperImpl implements UserMapper {
             return null;
         }
 
-        Long id = null;
-        String name = null;
-        String dateOfBirth = null;
+        UserDTO.UserDTOBuilder userDTO = UserDTO.builder();
 
-        id = user.getId();
-        name = user.getName();
-        dateOfBirth = user.getDateOfBirth();
+        userDTO.id( user.getId() );
+        userDTO.name( user.getName() );
+        userDTO.dateOfBirth( user.getDateOfBirth() );
 
-        List<String> emails = user.getEmails().stream().map(com.example.demo.model.EmailData::getEmail).toList();
-        List<String> phones = user.getPhones().stream().map(com.example.demo.model.Phone::getPhone).toList();
+        userDTO.emails( user.getEmails().stream().map(com.example.demo.model.EmailData::getEmail).toList() );
+        userDTO.phones( user.getPhones().stream().map(com.example.demo.model.Phone::getPhone).toList() );
 
-        UserDTO userDTO = new UserDTO( id, name, dateOfBirth, emails, phones );
-
-        return userDTO;
+        return userDTO.build();
     }
 
     @Override

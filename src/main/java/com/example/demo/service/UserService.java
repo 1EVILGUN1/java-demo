@@ -52,7 +52,7 @@ public class UserService {
         } else if (email != null) {
             userPage = repository.findByEmails_Email(email, pageable);
         } else {
-            userPage = repository.findByNameStartingWithAndDateOfBirthAfter(
+            userPage = repository.findByNameStartingWithAndDateOfBirth(
                     name != null ? name : "",
                     dateOfBirth != null ? dateOfBirth : "00.00.0000",
                     pageable

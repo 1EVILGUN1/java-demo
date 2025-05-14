@@ -5,6 +5,7 @@ import com.example.demo.service.TransferService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,7 @@ public class TransferController {
             @ApiResponse(responseCode = "400", description = "Invalid transfer request or insufficient funds"),
             @ApiResponse(responseCode = "403", description = "Access denied")
     })
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping
     public ResponseEntity<Void> transfer(
             @Valid @RequestBody TransferRequestDTO transferRequestDTO,

@@ -2,9 +2,11 @@ package com.example.demo.dto;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 
 import java.math.BigDecimal;
 
+@Builder
 public record TransferRequestDTO(
         @NotNull(message = "Receiver ID cannot be null")
         Long toUserId,

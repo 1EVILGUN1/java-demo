@@ -7,6 +7,7 @@ import com.example.demo.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +32,7 @@ public class UserController {
             @ApiResponse(responseCode = "200", description = "Users found"),
             @ApiResponse(responseCode = "400", description = "Invalid filter parameters")
     })
+    @SecurityRequirement(name = "bearerAuth")
     @GetMapping
     public Page<UserDTO> searchUsers(
             @RequestParam(required = false) String name,
@@ -52,6 +54,7 @@ public class UserController {
             @ApiResponse(responseCode = "400", description = "User not found"),
             @ApiResponse(responseCode = "403", description = "Access denied")
     })
+    @SecurityRequirement(name = "bearerAuth")
     @GetMapping("/{id}")
     public UserDTO getUserById(@PathVariable Long id, @AuthenticationPrincipal Long userId) {
         log.info("Fetching user with id {} by user {}", id, userId);
@@ -64,6 +67,7 @@ public class UserController {
             @ApiResponse(responseCode = "400", description = "Invalid email or email already taken"),
             @ApiResponse(responseCode = "403", description = "Access denied")
     })
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping("/{id}/emails")
     public ResponseEntity<Void> addEmail(
             @PathVariable Long id,
@@ -85,6 +89,7 @@ public class UserController {
             @ApiResponse(responseCode = "400", description = "Invalid email or email not found"),
             @ApiResponse(responseCode = "403", description = "Access denied")
     })
+    @SecurityRequirement(name = "bearerAuth")
     @PutMapping("/{id}/emails")
     public ResponseEntity<Void> updateEmail(
             @PathVariable Long id,
@@ -107,6 +112,7 @@ public class UserController {
             @ApiResponse(responseCode = "400", description = "Email not found or minimum email requirement not met"),
             @ApiResponse(responseCode = "403", description = "Access denied")
     })
+    @SecurityRequirement(name = "bearerAuth")
     @DeleteMapping("/{id}/emails")
     public ResponseEntity<Void> deleteEmail(
             @PathVariable Long id,
@@ -128,6 +134,7 @@ public class UserController {
             @ApiResponse(responseCode = "400", description = "Invalid phone or phone already taken"),
             @ApiResponse(responseCode = "403", description = "Access denied")
     })
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping("/{id}/phones")
     public ResponseEntity<Void> addPhone(
             @PathVariable Long id,
@@ -149,6 +156,7 @@ public class UserController {
             @ApiResponse(responseCode = "400", description = "Invalid phone or phone not found"),
             @ApiResponse(responseCode = "403", description = "Access denied")
     })
+    @SecurityRequirement(name = "bearerAuth")
     @PutMapping("/{id}/phones")
     public ResponseEntity<Void> updatePhone(
             @PathVariable Long id,
@@ -171,6 +179,7 @@ public class UserController {
             @ApiResponse(responseCode = "400", description = "Phone not found or minimum phone requirement not met"),
             @ApiResponse(responseCode = "403", description = "Access denied")
     })
+    @SecurityRequirement(name = "bearerAuth")
     @DeleteMapping("/{id}/phones")
     public ResponseEntity<Void> deletePhone(
             @PathVariable Long id,
